@@ -3,7 +3,7 @@
 **User Story:** Sebagai Surveyor, saya ingin menginput koordinat GPS titik bor tanah agar lokasi pengujian dapat terdefinisi dengan akurat dan terdokumentasi ke sistem.
 
 • **Context File:**
-  - `app/Models/SoilTest.php` — Main model for Soil Testing
+  - `app/Models/SoilTestModel.php` — Main model for Soil Testing
   - `app/Models/SoilLocation.php` — Model for GPS coordinates with relationships
   - `app/Actions/StoreSoilLocationAction.php` — Business logic for coordinate processing
   - `app/Http/Controllers/SoilLocationController.php` — Thin controller for location flow

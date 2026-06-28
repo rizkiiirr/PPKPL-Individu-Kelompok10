@@ -4,7 +4,7 @@
 Sebagai Pemilik Rumah, saya ingin menerima notifikasi hasil kelayakan fondasi berdasarkan uji tanah agar saya dapat mengetahui tingkat keamanan konstruksi rumah saya sebelum dilanjutkan.
 
 • **Context File:**
-  - `app/Models/SoilTest.php` — Parent model for soil testing record
+  - `app/Models/SoilTestModel.php` — Parent model for soil testing record
   - `app/Models/FoundationEligibility.php` — Model for final eligibility status
   - `app/Notifications/FoundationStatusNotification.php` — Laravel Notification class
   - `app/Http/Controllers/NotificationController.php` — Controller for managing alerts
@@ -45,7 +45,7 @@ Sebagai Pemilik Rumah, saya ingin menerima notifikasi hasil kelayakan fondasi be
   - **MOD** `routes/web.php` — Added notification routes for laboratory and owners
 
 • **Commit Message:** feat(notification): implement US 1.5 foundation eligibility alerts for homeowners
-    - Add FoundationStatusNotification for real-time safety updates
-    - Implement notification trigger logic in NotificationController
-    - Add status completion check before sending alerts
-    - Setup homeowner notification dashboard view
+- Add FoundationStatusNotification for real-time safety updates
+- Implement notification trigger logic in NotificationController
+- Add status completion check before sending alerts
+- Setup homeowner notification dashboard view

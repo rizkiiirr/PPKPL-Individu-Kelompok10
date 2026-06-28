@@ -4,7 +4,7 @@
 Sebagai Petugas Lab, saya ingin mengunggah sertifikat hasil pengujian tanah agar hasil uji memiliki bukti resmi yang valid dan dapat diverifikasi oleh pihak terkait.
 
 • **Context File:**
-  - `app/Models/SoilTest.php` — Parent model for soil testing record
+  - `app/Models/SoilTestModel.php` — Parent model for soil testing record
   - `app/Models/SoilCertificate.php` — Model for storing certificate metadata
   - `app/Actions/UploadSoilCertificateAction.php` — Business logic for MinIO S3 upload
   - `app/Http/Controllers/SoilCertificateController.php` — Thin controller for certificate flow
@@ -47,7 +47,7 @@ Sebagai Petugas Lab, saya ingin mengunggah sertifikat hasil pengujian tanah agar
   - **MOD** `app/Models/SoilTest.php` — Added file_path and status update logic
 
 • **Commit Message:** feat(soil-test): implement US 1.4 certificate upload with MinIO integration
-    - Add UploadSoilCertificateAction for S3 object storage
-    - Implement StoreCertificateRequest for PDF validation
-    - Configure MinIO storage driver in filesystems.php
-    - Add blade view for certificate management
+- Add UploadSoilCertificateAction for S3 object storage
+- Implement StoreCertificateRequest for PDF validation
+- Configure MinIO storage driver in filesystems.php
+- Add blade view for certificate management

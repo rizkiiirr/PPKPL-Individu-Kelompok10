@@ -4,10 +4,10 @@
 Sebagai Teknisi Lapangan, saya ingin menginput nilai daya dukung tanah hasil uji sondir agar sistem dapat mengevaluasi kekuatan tanah sebagai dasar perancangan fondasi.
 
 • **Context File:**
-  - `app/Models/SoilTest.php` — Parent model for soil testing record
-  - `app/Models/SoilResult.php` — Model for sondir test data (QC and FS values)
-  - `app/Actions/StoreSoilBearingCapacityAction.php` — Business logic for processing test results
-  - `app/Http/Controllers/SoilResultController.php` — Thin controller for technical results flow
+  - `app/Models/SoilTestModel.php` — Parent model for soil testing record
+  - `app/Models/HasilSondirModel.php` — Model for sondir test data (QC and FS values)
+  - `app/Actions/StoreSoilLocationAction.php` — Business logic for processing test results
+  - `app/Http/Controllers/TeknisiSondirController.php` — Thin controller for technical results flow
   - `app/Http/Requests/StoreSoilResultRequest.php` — Validation rules for numerical soil data
   - `resources/views/results/create.blade.php` — Input form for technical soil parameters
 
@@ -48,7 +48,7 @@ Sebagai Teknisi Lapangan, saya ingin menginput nilai daya dukung tanah hasil uji
   - **MOD** `app/Models/SoilTest.php` — Added `hasOne(SoilResult::class)` relationship
 
 • **Commit Message:** feat(soil-test): implement US 1.3 soil bearing capacity input for technicians
-    - Add StoreSoilBearingCapacityAction for technical data storage
-    - Implement StoreSoilResultRequest for numerical validation
-    - Add SoilResult model and migration with decimal precision
-    - Add blade view for test result entry
+- Add StoreSoilBearingCapacityAction for technical data storage
+- Implement StoreSoilResultRequest for numerical validation
+- Add SoilResult model and migration with decimal precision
+- Add blade view for test result entry
