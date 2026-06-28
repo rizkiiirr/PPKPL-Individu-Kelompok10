@@ -33,4 +33,12 @@ class SoilLocationModel extends Model
     {
         return $this->belongsTo(User::class, 'petugas_lapangan_id');
     }
+
+    public function hasilSondir()
+    {
+        return $this->hasOne(
+            HasilSondirModel::class,
+            'lokasi_id'
+        );
+    }
 }

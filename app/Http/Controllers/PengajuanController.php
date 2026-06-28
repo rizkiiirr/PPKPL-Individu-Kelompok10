@@ -37,7 +37,7 @@ class PengajuanController extends Controller
             'proyek_id' => $request->proyek_id,
             'kontraktor_id' => Auth::id(), // Ambil ID user yang login
             'jenis_pengujian' => $request->jenis_pengujian,
-            'status' => 'Menunggu Penjadwalan Lab', // Status awal sesuai User Journey
+            'status' => 'aktif', // Status awal sesuai User Journey
         ]);
 
         return redirect()->route('pengajuan.index')->with('success', 'Jadwal uji tanah berhasil diajukan!');

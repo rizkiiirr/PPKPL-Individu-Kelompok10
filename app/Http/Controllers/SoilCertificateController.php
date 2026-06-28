@@ -10,18 +10,31 @@ class SoilCertificateController extends Controller
 {
     public function create(SoilTestModel $soilTest)
     {
-        return view('lab.certificate.upload', compact('soilTest'));
+        return view('petugas_lab.upload_sertif', compact('soilTest'));
     }
 
     public function store(Request $request, SoilTestModel $soilTest)
     {
-        // ❗ VALIDASI STATUS (WAJIB)
-        if ($soilTest->status !== 'Menunggu Upload Sertifikat') {
-            return back()->with('error', 'Belum ada hasil pengujian!');
-        }
+        //     dd(
+        //     $soilTest->status,
+        //     $request->all(),
+        //     $request->hasFile('sertifikat_uji'),
+        //     $request->file('sertifikat_uji')
+        // );
+        // dd($soilTest->status);
+        // // Validasi: hanya bisa upload jika sudah dipilih Layak/Tidak Layak
+        // if (
+        //     $soilTest->status !== 'Layak' &&
+        //     $soilTest->status !== 'Tidak Layak'
+        // ) {
+        //     return back()->with(
+        //         'error',
+        //         'Tentukan status kelayakan terlebih dahulu.'
+        //     );
+        // }
 
         $request->validate([
-            'sertifikat_uji' => 'required|mimes:pdf|max:2048'
+            'sertifikat_uji' => 'required|mimes:pdf,jpg,jpeg,png|max:2048'
         ]);
 
         $file = $request->file('sertifikat_uji');
@@ -33,12 +46,11 @@ class SoilCertificateController extends Controller
             'file_path' => $path
         ]);
 
-        $soilTest->update([
-            'status' => 'Terverifikasi'
-        ]);
-
         return redirect()
-            ->route('lab.lokasi.index')
-            ->with('success', 'Sertifikat berhasil diupload');
+            ->route('petugas_lab.index')
+            ->with(
+                'success',
+                'Sertifikat berhasil diupload.'
+            );
     }
 }

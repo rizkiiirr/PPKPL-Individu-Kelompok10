@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\SoilTestModel;
 
 class SoilCertificate extends Model
 {
@@ -13,6 +14,9 @@ class SoilCertificate extends Model
 
     public function pengajuan()
     {
-        return $this->belongsTo(PengajuanUji::class, 'pengajuan_uji_tanah_id');
+        return $this->belongsTo(
+            SoilTestModel::class,
+            'pengajuan_uji_tanah_id'
+        );
     }
 }

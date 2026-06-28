@@ -31,4 +31,28 @@ class SoilTestModel extends Model
     {
         return $this->hasOne(SoilLocationModel::class, 'pengajuan_id');
     }
+
+    // public function proyek()
+    // {
+    //     return $this->belongsTo(
+    //         ProyekModel::class,
+    //         'proyek_id'
+    //     );
+    // }
+
+    public function hasilSondir()
+    {
+        return $this->hasOne(
+            HasilSondirModel::class,
+            'soil_test_id'
+        );
+    }
+
+    public function soilCertificate()
+    {
+        return $this->hasOne(
+            SoilCertificate::class,
+            'pengajuan_uji_tanah_id'
+        );
+    }
 }

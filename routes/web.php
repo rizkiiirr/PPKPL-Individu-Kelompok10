@@ -8,6 +8,8 @@ use App\Http\Controllers\TeknisiSondirController;
 use App\Http\Controllers\SoilCertificateController;
 use App\Http\Controllers\PetugasLapanganController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PemilikController;
+use App\Http\Controllers\PetugasLabController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +59,45 @@ Route::middleware('auth')->group(function () {
         Route::get('/pengajuan/buat', [PengajuanController::class, 'create'])->name('pengajuan.create');
         Route::post('/pengajuan/simpan', [PengajuanController::class, 'store'])->name('pengajuan.store');
     });
+    Route::prefix('pemilik')->group(function () {
+
+        // Dashboard pemilik
+        Route::get('/dashboard', [PemilikController::class, 'index'])
+            ->name('pemilik.index');
+
+        // Form tambah proyek
+        Route::get('/proyek/create', [PemilikController::class, 'create'])
+            ->name('proyek.create');
+
+        // Simpan proyek
+        Route::post('/proyek/store', [PemilikController::class, 'store'])
+            ->name('proyek.store');
+
+        // Notifikasi
+        Route::get('/notifications', [NotificationController::class, 'index'])
+            ->name('notifications.index');
+
+        Route::get(
+            '/dashboard',
+            [PemilikController::class, 'index']
+        )->name('pemilik.index');
+
+        Route::get(
+            '/proyek/create',
+            [PemilikController::class, 'create']
+        )->name('proyek.create');
+
+        Route::post(
+            '/proyek/store',
+            [PemilikController::class, 'store']
+        )->name('proyek.store');
+
+        Route::get(
+            '/notifications',
+            [NotificationController::class, 'index']
+        )->name('notifications.index');
+
+    });
 
     // US 1.2 Pengajuan input lokasi petugas lapangan
     Route::prefix('petugas_lapangan')->group(function () {
@@ -66,6 +107,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/lokasi/{soilTest}/buat', [PetugasLapanganController::class, 'create'])->name('lokasi.create');
 
         Route::post('/lokasi/{soilTest}/simpan', [PetugasLapanganController::class, 'store'])->name('lokasi.store');
+
+    });
+    Route::prefix('petugas_lab')->middleware('auth')->group(function () {
+
+        Route::get(
+            '/dashboard',
+            [PetugasLabController::class, 'index']
+        )->name('petugas_lab.index');
+
+        Route::post(
+            '/kelayakan/{soilTest}',
+            [PetugasLabController::class, 'updateKelayakan']
+        )->name('lab.kelayakan.update');
 
     });
         

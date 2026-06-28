@@ -4,7 +4,6 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Messages\DatabaseMessage;
 
 class FoundationStatusNotification extends Notification
 {
@@ -17,18 +16,29 @@ class FoundationStatusNotification extends Notification
         $this->soilTest = $soilTest;
     }
 
-    public function via($notifiable)
+    public function via(object $notifiable): array
     {
-        return ['database']; // simpan ke DB
+        return ['database'];
     }
 
-    public function toDatabase($notifiable)
+    public function toArray(object $notifiable): array
     {
         return [
+
             'title' => 'Status Kelayakan Fondasi',
-            'message' => 'Hasil uji tanah Anda telah diverifikasi.',
-            'status' => 'Layak', // bisa kamu kembangkan nanti
-            'soil_test_id' => $this->soilTest->id,
+
+            'message' =>
+                'Hasil pengujian '
+                . $this->soilTest->jenis_pengujian
+                . ' untuk proyek '
+                . $this->soilTest->proyek->nama_proyek
+                . ' dinyatakan '
+                . $this->soilTest->status,
+
+            'status' => $this->soilTest->status,
+
+            'jenis_pengujian' =>
+                $this->soilTest->jenis_pengujian,
         ];
     }
 }

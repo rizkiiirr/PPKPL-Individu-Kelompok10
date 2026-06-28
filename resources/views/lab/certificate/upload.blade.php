@@ -61,7 +61,7 @@
 
         <!-- Back -->
         <div class="mt-4 text-center">
-            <a href="{{ route('dashboard') }}" class="text-blue-500 text-sm hover:underline">
+            <a href="{{ route('petugas_lab.index') }}" class="text-blue-500 text-sm hover:underline">
                 ← Kembali ke Dashboard
             </a>
         </div>

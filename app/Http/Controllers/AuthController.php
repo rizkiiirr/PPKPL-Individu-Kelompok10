@@ -23,7 +23,27 @@ class AuthController extends Controller
             $request->session()->regenerate();
             
             // Redirect sementara ke halaman home/dashboard setelah login
-            return redirect()->intended('/dashboard');
+            if (Auth::attempt($credentials)) {
+
+                $request->session()->regenerate();
+
+                $user = Auth::user();
+
+                switch ($user->role) {
+
+                    case 'PemilikRumah':
+                        return redirect()->route('pemilik.index');
+
+                    case 'PetugasLab':
+                        return redirect()->route('petugas_lab.index');
+
+                    case 'Kontraktor':
+                    case 'TeknisiLapangan':
+                    case 'PetugasLapangan':
+                    default:
+                        return redirect()->route('dashboard');
+                }
+            }
         }
 
         return back()->withErrors([
